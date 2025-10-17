@@ -1,0 +1,45 @@
+// Color Palette: DARK / LIGHT TOGGLE
+$clr-white: rgb(255, 255, 255);
+$clr-black: rgb(30, 30, 30);
+$clr-gray1: rgb(255, 255, 255);
+$clr-gray2:  rgb(232, 228, 228);
+$clr-gray3: rgb(192, 192, 192);
+$clr-gray4: rgb(150, 150, 150);
+$clr-accent: rgb(255, 0, 0);
+
+// Color Palette: NEUTRAL
+$clr-boxshadow: rgba(88, 88, 88, 0.37);
+$clr-btn-light: rgb(244, 241, 241);
+$clr-btn-dark: rgb(192, 192, 192);
+$clr-btn-hover: rgb(232, 232, 232);
+
+// Color Palette: STATUS
+$clr-success: rgb(179, 247, 149);
+$clr-warning: rgb(250, 195, 106);
+$clr-pending: rgb(165, 195, 247);
+$clr-error: rgb(249, 121, 121);
+$clr-success-bold: rgb(0, 128, 0);
+$clr-error-bold: rgb(255, 0, 0);
+
+
+// DARK LIGHT COLOR SCHEME 
+:root {
+  --clr-background: #{$clr-white};
+  --clr-font-prim: #{$clr-black};
+  --clr-font-sec: #{$clr-gray3};
+  --clr-font-ter: #{$clr-gray2};
+  --clr-accent: #{$clr-accent};
+}
+
+div[dark-mode="true"] {
+  --clr-background: #{$clr-black};
+  --clr-font-prim: #{$clr-white};
+  --clr-font-sec: #{$clr-gray2};
+  --clr-font-ter: #{$clr-gray3};
+  --clr-accent: #{$clr-accent};
+}
+
+.page {
+  background-color: var(--clr-background);
+  color: var(--clr-font-prim);
+}

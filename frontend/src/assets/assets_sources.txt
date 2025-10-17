@@ -1,0 +1,29 @@
+Flavicon : flavicon_netflix.png
+   https://www.freepik.com/icon/netflix_732228#fromView=search&page=1&position=10&uuid=b91601c1-cb06-46ff-b041-884bd06f2245
+   License: free for personal use as stated on homepage
+
+Netflix logo navbar : netflix_logo.png
+   https://www.freepik.com/icon/netflix_5977590#fromView=search&page=1&position=20&uuid=aa79d1c8-93c3-434a-bb37-17df5c49f56a
+   License: free for personal use as stated on homepage
+
+Netflix avatar navabr : online source (local copy: Netflix_avatar.png)
+   https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png
+   License: free to use, share, adapt as stated on Wikipedia Licensing section
+
+Featured movie logo : online source (local copy: featured_logo.png)
+   https://upload.wikimedia.org/wikipedia/commons/5/51/Harry_Potter_logo.svg
+   License: public domain logo image
+
+Featured movie banner : featured_banner.jpg
+   https://images.pexels.com/photos/507410/pexels-photo-507410.jpeg
+   License: free to use and modify; attribution not required   
+
+Movie ListItem Filler img : movie_listitem_filler.jpg
+   https://images.pexels.com/photos/29767372/pexels-photo-29767372.jpeg
+   License: free to use and modify; attribution not required
+
+Register backdrop img : backdrop.jpg
+   https://images.pexels.com/photos/7991486/pexels-photo-7991486.jpeg
+   License: free to use and modify; attribution not required
+
+ 

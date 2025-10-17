@@ -1,0 +1,54 @@
+@use "../../styles/variables" as *;
+
+.featured {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  .featured-item {
+    flex: 1;
+    margin: 20px 30px;
+    padding: 20px;
+    box-shadow: 0px 0px 11px 3px $clr-boxshadow;
+
+    .item-header {
+      font-size: 24px;
+      padding-left: 40px;
+    }
+
+    .item-body {
+      display: flex;
+      justify-content: center;
+      margin: 10px;
+            
+      .money {
+        font-size: 26px;
+        font-weight: 900;
+        margin-right: 20px;
+      }
+
+      .rate {
+        display: flex;
+        align-items: center;
+          
+        .arrow {
+          margin-left: 2px;
+          font-size: 28px;
+
+          &.negative {
+            color: $clr-error-bold;
+          }
+
+          &.positive {
+            color: $clr-success-bold;
+          }
+        }
+      }
+    }
+
+    .item-footer {
+      color: var(--clr-font-sec);
+      padding-left: 40px;
+    }
+  }
+}

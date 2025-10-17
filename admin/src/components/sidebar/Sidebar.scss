@@ -1,0 +1,48 @@
+@use "../../styles/variables" as *;
+
+.sidebar {
+  flex: 1;
+  height: calc(100vh - 80px);
+  position: sticky;
+  top: 80px;
+
+  .menu-container {
+    padding: 20px;
+
+    .menu-block {
+      margin-bottom: 20px;
+
+      .block-title {
+        text-transform: uppercase;
+        color: var(--clr-font-sec);
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+
+      .block-selection {
+
+        .block-item {
+          padding: 5px;
+          display: flex;
+          align-items: center;
+          list-style: none;
+          cursor: pointer;
+
+          &.active, 
+          &:hover {
+            background-color: $clr-btn-hover;
+            color: $clr-black;
+          }
+
+          .icon {
+            margin-right: 5px;
+          }
+        }
+
+        .inactive {
+          color: var(--clr-font-ter)
+        }
+      }
+    }
+  }
+}

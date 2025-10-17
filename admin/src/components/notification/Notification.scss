@@ -1,0 +1,35 @@
+@use '../../styles/variables' as *;
+@use 'sass:color';
+
+.snackbar {
+  &_alert {
+    width: 100%;
+    font-weight: 500;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px $clr-boxshadow;
+  }
+
+  &_alert-success {
+    background-color: color.mix(white, $clr-success, 75%) !important;
+    border: 2px solid $clr-success !important;
+    color: color.mix(black, $clr-success, 50%) !important;
+  }
+
+  &_alert-error {
+    background-color: color.mix(white, $clr-error, 75%) !important;
+    border: 2px solid $clr-error !important;
+    color: color.mix(black, $clr-error, 40%) !important;
+  }
+
+  &_alert-info {
+    background-color: color.mix(white, $clr-pending, 75%) !important;
+    border: 2px solid $clr-pending !important;
+    color: color.mix(black, $clr-pending, 50%) !important;
+  }
+
+  &-success,
+  &-error,
+  &-upload {
+    transition: opacity 0.3s ease;
+  }
+}
