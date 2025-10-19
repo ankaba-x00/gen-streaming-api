@@ -1,11 +1,11 @@
 export default function validateMovie(movie) {
-  const titleRegex = /^[A-Za-z0-9\s.,?!+\-]+$/;
-  const textRegex = /^[A-Za-z0-9\s.,?!+\-/*]+$/;
+  const titleRegex = /^[A-Za-z0-9\s&.,?!+*:'\-]+$/;
+  const textRegex = /^[A-Za-z0-9\s&.,?!+/*:'\-]+$/;
 
   if (!movie?.title || movie?.title.trim() === "" || movie?.title.length >= 100 || !titleRegex.test(movie?.title.trim())) {
     return `
       Invalid title.
-      Allowed: A-Z a-z 0-9 . , ? ! + - [space]
+      Allowed: A-Z a-z 0-9 & . , ? ! + - ' [space]
     `;
   }
 
@@ -57,7 +57,7 @@ export default function validateMovie(movie) {
     return `
       Invalid thumbnail description.
       Length: 25 - 250 characters
-      Allowed: A-Z a-z 0-9 . , ? ! + - / * [space]
+      Allowed: A-Z a-z 0-9 & . , ? ! + - / * ' [space]
     `;
   }
 
@@ -70,7 +70,7 @@ export default function validateMovie(movie) {
     return `
       Invalid feature description.
       Length: 25 - 450 characters
-      Allowed: A-Z a-z 0-9 . , ? ! + - / * [space]
+      Allowed: A-Z a-z 0-9 & . , ? ! + - / * ' [space]
     `;
   }
 

@@ -26,7 +26,7 @@ export default function List() {
   const { movies, dispatch: dispatchMovie } = useContext(MovieContext);
 
   const genres = [
-    "Action", "Adventure", "Animation", "Comedy", "Crime", "Documentary", "Drama", "Fantasy", "Historical", "Horror", "Romance", "Sci-Fi", "Thriller", "Western"
+    "Action", "Adventure", "Animation", "Children", "Comedy", "Crime", "Documentary",  "Drama", "Fantasy", "Historical", "Horror", "Musical", "Romance", "Sci-Fi", "Sports", "Thriller", "Western"
   ];
 
   useEffect(() => {

@@ -1,0 +1,17 @@
+{
+  "name": "db",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "import:movies": "node ./scripts/importMovies.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "firebase-admin": "^13.5.0",
+    "mongoose": "^8.19.1"
+  }
+}

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const MovieSchema = new mongoose.Schema(
   {
@@ -7,7 +7,7 @@ const MovieSchema = new mongoose.Schema(
       trim: true,
       minlength: [1, "Title must be at least 1 character"],
       maxlength: [100, "Title cannot exceed 100 characters"],
-      match: [/^[A-Za-z0-9\s&.,?!+*/':\-]+$/, "Title may only contain letters, numbers, spaces, and & . , ? ! + - ' :"],
+      match: [/^[A-Za-z0-9\s&.,?!+:'\-]+$/, "Title may only contain letters, numbers, spaces, and & . , ? ! + - ' : "],
       required: [true, "Title is required"],
     },
     year: { 
@@ -34,7 +34,7 @@ const MovieSchema = new mongoose.Schema(
     },
     genre: { 
       type: [String],
-      enum: ["Adventure", "Action", "Children", "Comedy", "Crime", "Fantasy", "Historical", "Horror", "Musical", "Romance", "Sci-Fi", "Sports", "Thriller", "Western", "Animation", "Drama", "Documentary"],
+      enum: ["Adventure", "Action", "Children", "Comedy", "Crime", "Fantasy", "Historical", "Horror", "Musical", "Romance", "Sci-Fi", "Sports", "Thriller", "Western", "Animation", "Drama", "Documentary"], 
       required: [true, "Genre is required"],
     },
     imgSmText: { 
@@ -42,7 +42,7 @@ const MovieSchema = new mongoose.Schema(
       trim: true,
       minlength: [25, "Thumbnail description must be at least 25 characters"],
       maxlength: [250, "Thumbnail description cannot exceed 450 characters"],
-      match: [/^[A-Za-z0-9\s&.,?!+/*':\-]+$/, "Text may only contain letters, numbers, spaces, and & . , ? ! / + - * ' :"],
+      match: [/^[A-Za-z0-9\s&.,?!+/*:'\-]+$/, "Text may only contain letters, numbers, spaces, and & . , ? ! / + - ' :"],
       required: [true, "Thumbnail description is required"],
     },
     imgText: { 
@@ -50,7 +50,7 @@ const MovieSchema = new mongoose.Schema(
       trim: true,
       minlength: [25, "Feature description must be at least 25 characters"],
       maxlength: [450, "Feature description cannot exceed 450 characters"],
-      match: [/^[A-Za-z0-9\s&.,?!/+/*':\-]+$/, "Text may only contain letters, numbers, spaces, and & . , ? ! / + - * ' :"],
+      match: [/^[A-Za-z0-9\s&.,?!/+:'\-]+$/, "Text may only contain letters, numbers, spaces, and & . , ? ! / + - ' :"],
       required: [true, "Feature description is required"],
     },
     storageHash: {
@@ -78,4 +78,4 @@ const MovieSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Movie", MovieSchema);
+export default mongoose.model("Movie", MovieSchema);

@@ -7,7 +7,6 @@ const UserSchema = new mongoose.Schema(
       trim: true,
       match: [/^[A-Za-z]+(?:\s+[A-Za-z]+)+$/, "Name may only contain letters and spaces and must contain 2 or more words"],
       required: [true, "Full name is required"],
-      unique: true
     },
     username: { 
       type: String,
@@ -22,7 +21,6 @@ const UserSchema = new mongoose.Schema(
       trim: true,
       match: [/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/, "Email address allows letters, numbers, dot, underscore, percent, plus and hyphen before @ and requires a TLD of 2 or more letters"],
       required: [true, "Email is required"],
-      unique: true
     },
     password: { 
       type: String, 

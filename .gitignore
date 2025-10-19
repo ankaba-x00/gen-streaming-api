@@ -50,4 +50,12 @@ backend/.env
 backend/install_requirements.txt
 
 # database specific
-db/
+db/data/img/
+db/data/imgSm/
+db/data/ml_output/
+db/data/trailer/
+db/data/video/
+db/node_modules/
+db/.env
+db/firebase-key.json
+db/install_requirements.txt

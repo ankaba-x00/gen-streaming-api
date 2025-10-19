@@ -6,9 +6,8 @@ const ListSchema = new mongoose.Schema(
       type: String,
       minlength: [1, "Title must be at least 1 character"],
       maxlength: [100, "Title cannot exceed 100 characters"],
-      match: [/^[A-Za-z0-9\s]+$/, "Title may only contain letters, numbers, spaces"],
+      match: [/^[A-Za-z0-9\s-]+$/, "Title may only contain letters, numbers, spaces and -"],
       required: [true, "Title is required"],
-      unique: true 
     },
     type: { 
       type: String,
@@ -17,7 +16,7 @@ const ListSchema = new mongoose.Schema(
     },
     genre: { 
       type: [String],
-      enum: ["Adventure", "Action", "Comedy", "Crime", "Fantasy", "Historical", "Horror", "Romance", "Sci-Fi", "Thriller", "Western", "Animation", "Drama", "Documentary"],
+      enum: ["Adventure", "Action", "Children", "Comedy", "Crime", "Fantasy", "Historical", "Horror", "Musical", "Romance", "Sci-Fi", "Sports", "Thriller", "Western", "Animation", "Drama", "Documentary"],
       required: [true, "Genre is required"],
     },
     content:{
