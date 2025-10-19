@@ -13,7 +13,7 @@ export default function Featured({ type }) {
         const res = await axios.get(`/api/movies/random?type=${type}`, 
           {
             headers: {
-              token:"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Y2Q0Yjk0YjM0ZGM3OWE3YzFjMzJiZSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTc2MDY5Njk0MywiZXhwIjoxNzYwNzgzMzQzfQ.e0rHCqTil9PzfV9-1let0fUbGLtmJ7H3bFLho-DgfwA"
+              token:"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Y2Q0Yjk0YjM0ZGM3OWE3YzFjMzJiZSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTc2MDg2NDYxNCwiZXhwIjoxNzYwOTUxMDE0fQ.AfFfaDgF4FDiNMxEpIt9gCX0edm2nWmV0zwcQZbh8fI"
              },
           })
         setContent(res.data[0])
@@ -50,7 +50,7 @@ export default function Featured({ type }) {
       )}
       <img width="100%" src={content.img} alt="" />
       <div className="info">
-        <FeaturedTitle title={content.imgTitle}/>
+        <FeaturedTitle title={content.title}/>
         <span className="description">
           {content.desc}
         </span>

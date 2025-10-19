@@ -8,9 +8,9 @@ export default function TitleSVG({ title }) {
       <text
         x="0"
         y="50%"
-        fontSize="85"
+        fontSize="95"
         fontFamily="Caveat Brush"
-        fill="black"
+        fill="orange"
         textAnchor="start"
         alignmentBaseline="middle"
       >

@@ -16,7 +16,7 @@ useEffect(() => {
           `/api/lists${type ? "?type=" + type : ""}${genre ? "&genre=" + genre : ""}`,
           {
             headers: {
-              token:"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Y2Q0Yjk0YjM0ZGM3OWE3YzFjMzJiZSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTc2MDY5Njk0MywiZXhwIjoxNzYwNzgzMzQzfQ.e0rHCqTil9PzfV9-1let0fUbGLtmJ7H3bFLho-DgfwA"
+              token:"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Y2Q0Yjk0YjM0ZGM3OWE3YzFjMzJiZSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTc2MDg2NDYxNCwiZXhwIjoxNzYwOTUxMDE0fQ.AfFfaDgF4FDiNMxEpIt9gCX0edm2nWmV0zwcQZbh8fI"
              },
           }
         );
