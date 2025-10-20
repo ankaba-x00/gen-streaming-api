@@ -1,20 +1,40 @@
 import './Register.scss';
 import logo from '../../assets/netflix_logo.png';
 import { useRef, useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function Register() {
 
   const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [step, setStep] = useState(1);
+
+  const navigate = useNavigate();
 
   const emailRef = useRef();
   const passwordRef = useRef();
+  const usernameRef = useRef();
 
   const handleStart = () => {
-    setEmail(emailRef.current.value)
+    if (!email.trim()) return alert("Please enter your email!");
+    setStep(2);
   }
-  const handleFinish = () => {
-    setPassword(passwordRef.current.value)
+
+  const handleFinish = async (e) => {
+    e.preventDefault();
+    if (!username || !password) {
+      return alert("Username and password are required!");
+    }
+
+    try {
+      await axios.post("/api/auth/register", { username, email, password });
+      navigate("/login")
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
@@ -22,22 +42,51 @@ export default function Register() {
       <div className="top">
         <div className="wrapper">
           <img src={logo} alt="Netflix logo" className="logo" />
-          <button className="loginBtn">Sign In</button>
+          <Link to="/login" className="link loginBtn">Sign In</Link>
         </div>
       </div>
       <div className="container">
         <h1>Unlimited movies, TV shows, and more.</h1>
         <h2>Watch anywhere. Cancel anytime.</h2>
         <p>Ready to watch? Enter your email to create or restart your membership.</p>
-        {!email ? (
+        {step === 1 ? (
           <div className="userInput">
-            <input type="email" placeholder="email address" ref={emailRef} />
-            <button className="registerBtn" onClick={handleStart}>Get Started</button>
+            <input 
+              type="email"
+              name="email"
+              placeholder="email address" 
+              value={email} 
+              onChange={e => setEmail(e.target.value)}
+            />
+            <button 
+              className="registerBtn" 
+              onClick={handleStart}
+            >
+              Get Started
+            </button>
           </div>
         ) : (
           <form className="userInput">
-            <input type="password" placeholder="password" ref={passwordRef} />
-            <button className="registerBtn" onClick={handleFinish}>Register</button>
+            <input 
+              type="text" 
+              name="username"
+              placeholder="username"
+              value={username} 
+              onChange={e => setUsername(e.target.value)}
+            />
+            <input 
+              type="password" 
+              name="password"
+              placeholder="password"
+              value={password} 
+              onChange={e => setPassword(e.target.value)}
+            />
+            <button 
+              className="registerBtn" 
+              onClick={handleFinish}
+            >
+              Register
+            </button>
           </form>
         )}
       </div>

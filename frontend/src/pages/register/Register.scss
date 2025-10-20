@@ -10,6 +10,9 @@
   position: relative;
 
   .top {
+    position: relative;
+    z-index: 10;
+
     .wrapper {
       padding: 20px 50px;
       display: flex;
@@ -59,7 +62,7 @@
 
     .userInput {
       width: 50%;
-      background-color: white;
+      background: transparent;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -73,6 +76,8 @@
         border: none;
         padding: 0 10px;
         font-size: 20px;
+        border-radius: 5px;
+        margin-right: 1px;
       }
 
       .registerBtn {
@@ -82,6 +87,8 @@
         border: none;
         color: white;
         font-size: 20px;
+        padding: 10px 5px;
+        border-radius: 5px;
         cursor: pointer;
       }
     }

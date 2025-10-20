@@ -2,13 +2,6 @@ const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema(
   {
-    name: { 
-      type: String,
-      trim: true,
-      match: [/^[A-Za-z]+(?:\s+[A-Za-z]+)+$/, "Name may only contain letters and spaces and must contain 2 or more words"],
-      required: false
-      //required: [true, "Full name is required"],
-    },
     username: { 
       type: String,
       trim: true,
@@ -32,34 +25,6 @@ const UserSchema = new mongoose.Schema(
       ],
       required: [true, "Password is required"],
     },
-    gender: {
-      type: String,
-      enum: ["male", "female", "other"],
-      //required: [true, "Gender is required"]
-      required: false
-    },
-    storageHash: {
-      type: String, 
-      //required: [true, "Storage hash is required for objects containing all media files"],
-      required: false,
-      unique: true 
-    },
-    country: {
-      type: String,
-      //required: [true, "Country of residence is required"]
-      required: false
-    },
-    imgProfile: { 
-      type: String, 
-      defaut: "",
-      required: false
-    },
-    phone: {
-      type: String,
-      trim: true,
-      match: [/^\+[0-9]+$/, "Phone must start with + followed by only numbers"],
-      required: false
-    },
     isAdmin: { 
       type: Boolean,
       default: false,
@@ -74,4 +39,4 @@ const UserSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports = mongoose.model("RegUser", UserSchema);

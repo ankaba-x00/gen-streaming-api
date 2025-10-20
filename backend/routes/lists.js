@@ -53,50 +53,54 @@ router.put("/:id", verify, async (req, res) => {
 router.get("/", verify, async (req, res) => {
   const typeQuery = req.query.type;
   const genreQuery = req.query.genre;
+  const source = req.headers["x-frontend"];
+  if (!source) {
+    return res.status(400).json({ message: "Missing x-frontend header" });
+  }
   let list = [];
   try {
-    if (typeQuery) {
-      if (genreQuery) {
-        list = await List.find({ 
-          type: typeQuery, genre: genreQuery 
-        });
+    if (source === "admin") {
+      if (typeQuery) {
+        if (genreQuery) {
+          list = await List.find({ 
+            type: typeQuery, 
+            genre: { $in: [genreQuery] } 
+          });
+        } else {
+          list = await List.find({ 
+            type: typeQuery 
+          });
+        }
       } else {
-        list = await List.find({ 
-          type: typeQuery, genre: genreQuery 
-        });
+        list = await List.find();
       }
-    } else {
-      list = await List.find();
+    } else if (source === "client") {
+      if (typeQuery) {
+        if (genreQuery) {
+          list = await List.aggregate([
+            { $match: { 
+              type: typeQuery, 
+              genre: { $in: [genreQuery] } 
+            } },
+            { $sample: { size: 12 } },
+          ]);
+        } else {
+          list = await List.aggregate([
+            { $match: { type: typeQuery } },
+            { $sample: { size: 12 } },
+          ]);
+        }
+      } else {
+        list = await List.aggregate([{ $sample: { size: 12 } }]);
+      }
+    }
+    if (!list.length) {
+      return res.status(404).json("No lists found");
     }
     res.status(200).json(list);
   } catch (err) {
     res.status(500).json(err);
   }
 });
-// router.get("/", verify, async (req, res) => {
-//   const typeQuery = req.query.type;
-//   const genreQuery = req.query.genre;
-//   let list = [];
-//   try {
-//     if (typeQuery) {
-//       if (genreQuery) {
-//         list = await List.aggregate([
-//           { $sample: { size: 10 } },
-//           { $match: { type: typeQuery, genre: genreQuery } },
-//         ]);
-//       } else {
-//         list = await List.aggregate([
-//           { $sample: { size: 10 } },
-//           { $match: { type: typeQuery } },
-//         ]);
-//       }
-//     } else {
-//       list = await List.aggregate([{ $sample: { size: 10 } }]);
-//     }
-//     res.status(200).json(list);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
 
 module.exports = router;

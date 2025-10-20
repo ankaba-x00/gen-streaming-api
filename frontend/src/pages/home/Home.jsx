@@ -16,7 +16,8 @@ useEffect(() => {
           `/api/lists${type ? "?type=" + type : ""}${genre ? "&genre=" + genre : ""}`,
           {
             headers: {
-              token:"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Y2Q0Yjk0YjM0ZGM3OWE3YzFjMzJiZSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTc2MDg2NDYxNCwiZXhwIjoxNzYwOTUxMDE0fQ.AfFfaDgF4FDiNMxEpIt9gCX0edm2nWmV0zwcQZbh8fI"
+              token:"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Y2Q0Yjk0YjM0ZGM3OWE3YzFjMzJiZSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTc2MDk2MDI3OCwiZXhwIjoxNzYxMDQ2Njc4fQ.KMMy037niyORP2nAWvbW0zOqmyBRhKpETiHlZbnZl2c",
+              "x-frontend": "client"
              },
           }
         );
@@ -31,7 +32,7 @@ useEffect(() => {
   return (
     <div className="home">
       <Navbar />
-      <Featured type={type} />
+      <Featured type={type} setGenre={setGenre} />
         {lists.map((list) => (
           <List key={list._id} list={list} />
         ))}

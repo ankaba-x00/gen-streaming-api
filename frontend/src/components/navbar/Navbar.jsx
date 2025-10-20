@@ -1,12 +1,14 @@
 import './Navbar.scss';
 import logo from '../../assets/netflix_logo.png';
 import { Search, NotificationsNone, ArrowDropDown } from '@mui/icons-material';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from "../../authContext/AuthContext";
+import { logout } from "../../authContext/AuthActions";
 
 function Navbar() {
-
   const [isScrolled, setIsScrolled] = useState(false);
+  const {dispatch} = useContext(AuthContext);
 
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);
@@ -40,7 +42,7 @@ function Navbar() {
           <ArrowDropDown />
           <div className="dropdown-options">
             <span>Settings</span>
-            <span>Logout</span>
+            <span onClick={() => dispatch(logout())}>Logout</span>
           </div>
         </div>
         </div>

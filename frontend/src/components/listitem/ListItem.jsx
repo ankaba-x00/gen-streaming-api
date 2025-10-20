@@ -15,7 +15,7 @@ export default function ListItem({ index, item}) {
         const res = await axios.get("/api/movies/find/" + item, 
           {
             headers: {
-              token:"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Y2Q0Yjk0YjM0ZGM3OWE3YzFjMzJiZSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTc2MDg2NDYxNCwiZXhwIjoxNzYwOTUxMDE0fQ.AfFfaDgF4FDiNMxEpIt9gCX0edm2nWmV0zwcQZbh8fI"
+              token:"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Y2Q0Yjk0YjM0ZGM3OWE3YzFjMzJiZSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTc2MDk2MDI3OCwiZXhwIjoxNzYxMDQ2Njc4fQ.KMMy037niyORP2nAWvbW0zOqmyBRhKpETiHlZbnZl2c"
              },
           });
         setMovie(res.data)
@@ -52,7 +52,7 @@ export default function ListItem({ index, item}) {
                 <span>{movie.year}</span>
               </div>
               <div className="description">
-                {movie.desc}
+                {movie.imgSmText}
               </div>
               <div className="genre">{movie.genre}</div>
             </div>
