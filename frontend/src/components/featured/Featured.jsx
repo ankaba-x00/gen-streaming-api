@@ -1,8 +1,8 @@
 import './Featured.scss';
 import { PlayArrow, InfoOutline } from '@mui/icons-material';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import FeaturedTitle from './FeaturedTitle';
+import api from "../../api/axios";
 
 export default function Featured({ type, setGenre }) {
   const [content, setContent] = useState({})
@@ -10,12 +10,7 @@ export default function Featured({ type, setGenre }) {
   useEffect(() => {
     const getRandomContent = async () => {
       try {
-        const res = await axios.get(`/api/movies/random?type=${type}`, 
-          {
-            headers: {
-              token:"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Y2Q0Yjk0YjM0ZGM3OWE3YzFjMzJiZSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTc2NzExNDU2NywiZXhwIjoxNzY3MjAwOTY3fQ.hz3YpMNZgTF-PWpVcxSYaPZK9_CsWJOIG8NeevdmZc4"
-             },
-          })
+        const res = await api.get(`/movies/random?type=${type}`)
         setContent(res.data[0])
       } catch (err) {
         console.log(err)

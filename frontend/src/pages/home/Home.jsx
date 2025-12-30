@@ -3,7 +3,7 @@ import Navbar from '../../components/navbar/Navbar';
 import Featured from '../../components/featured/Featured';
 import List from '../../components/list/List';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from "../../api/axios";
 
 const Home = ({ type }) => {
   const [lists, setLists] = useState([]);
@@ -12,14 +12,8 @@ const Home = ({ type }) => {
 useEffect(() => {
     const getRandomLists = async () => {
       try {
-        const res = await axios.get(
-          `/api/lists${type ? "?type=" + type : ""}${genre ? "&genre=" + genre : ""}`,
-          {
-            headers: {
-              token:"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Y2Q0Yjk0YjM0ZGM3OWE3YzFjMzJiZSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTc2NzExNDU2NywiZXhwIjoxNzY3MjAwOTY3fQ.hz3YpMNZgTF-PWpVcxSYaPZK9_CsWJOIG8NeevdmZc4",
-              "x-frontend": "client"
-             },
-          }
+        const res = await api.get(
+          `/lists${type ? "?type=" + type : ""}${genre ? "&genre=" + genre : ""}`
         );
         //console.log(res);
         setLists(Array.isArray(res.data) ? res.data : []);

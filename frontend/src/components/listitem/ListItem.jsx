@@ -1,8 +1,8 @@
 import './ListItem.scss';
 import { PlayArrowRounded, Add, Close, ThumbDownOffAltOutlined, ThumbUp } from '@mui/icons-material';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import api from "../../api/axios";
 
 export default function ListItem({ index, item}) {
 
@@ -12,12 +12,8 @@ export default function ListItem({ index, item}) {
   useEffect(() => {
     const getMovie = async () => {
       try {
-        const res = await axios.get("/api/movies/find/" + item, 
-          {
-            headers: {
-              token:"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Y2Q0Yjk0YjM0ZGM3OWE3YzFjMzJiZSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTc2NzExNDU2NywiZXhwIjoxNzY3MjAwOTY3fQ.hz3YpMNZgTF-PWpVcxSYaPZK9_CsWJOIG8NeevdmZc4"
-             },
-          });
+        const res = await api.get("/movies/find/" + item);
+        console.log("MOVIE RESPONSE:", res.data);
         setMovie(res.data)
       } catch (err) {
         console.log(err)
