@@ -1,3 +1,5 @@
+@use "../../styles/mixins" as *;
+
 .register {
   width: 100vw;
   height: 100vh;
@@ -49,15 +51,53 @@
         
 
     h1 {
-      font-size: 50px;
+      @include laptop {
+        font-size: 45px;
+      }
+
+      @include tablet {
+        font-size: 38px;
+      }
+
+      @include mobile {
+        font-size: 35px;
+        margin: 10px 49px;
+        text-align: center;
+      }
     }
 
     h2 {
-      margin: 20px;
+      @include laptop {
+        font-size: 40px;
+        margin: 20px;
+      }
+
+      @include tablet {
+        font-size: 32px;
+        margin: 20px;
+      }
+
+      @include mobile {
+        font-size: 28px;
+        margin: 10px 79px;
+        text-align: center;
+      }
     }
 
     p {
-      font-size: 20px;
+      @include laptop {
+        font-size: 20px;
+      }
+
+      @include tablet {
+        font-size: 18px;
+      }
+
+      @include mobile {
+        font-size: 22px;
+        margin: 10px 25px;
+        text-align: center;
+      }
     }
 
     .userInput {
@@ -75,9 +115,20 @@
         height: 100%;
         border: none;
         padding: 0 10px;
-        font-size: 20px;
         border-radius: 5px;
         margin-right: 1px;
+
+        @include laptop {
+          font-size: 19px;
+        }
+
+        @include tablet {
+          font-size: 16px;
+        }
+
+        @include mobile {
+          font-size: 14px;
+        }
       }
 
       .registerBtn {
@@ -90,6 +141,19 @@
         padding: 10px 5px;
         border-radius: 5px;
         cursor: pointer;
+
+        @include laptop {
+          font-size: 19px;
+        }
+
+        @include tablet {
+          font-size: 16px;
+        }
+
+        @include mobile {
+          padding: 5px 5px;
+          font-size: 14px;
+        }
       }
     }
   }

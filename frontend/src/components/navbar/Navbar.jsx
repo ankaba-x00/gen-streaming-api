@@ -21,13 +21,13 @@ function Navbar() {
         <div className="left">
           <img src={logo} alt="" />
           <Link to="/" className="link">
-            <span>Home</span>
+            <span className="main-lks">Home</span>
           </Link>
           <Link to="/series" className="link">
-            <span>Shows</span>
+            <span className="main-lks">Shows</span>
           </Link>
           <Link to="/movies" className="link">
-            <span>Movies</span>
+            <span className="main-lks">Movies</span>
           </Link>
           <span>New & Popular</span>
           <span>My List</span>
@@ -36,7 +36,7 @@ function Navbar() {
         <div className="right">
         <span><Search /></span>
         <span>Kids</span>
-        <span><NotificationsNone /></span>
+        <span className="notification"><NotificationsNone /></span>
         <div className='profile'>
           <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png" alt="Netflix avatar" />
           <ArrowDropDown />

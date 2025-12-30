@@ -18,7 +18,8 @@ export default function Watch() {
         src={movie.trailer} 
         autoPlay
         muted
-        controls></video>
+        controls
+        playsInline></video>
     </div>
   )
 }

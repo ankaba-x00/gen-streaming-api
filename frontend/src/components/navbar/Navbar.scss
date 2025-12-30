@@ -1,3 +1,5 @@
+@use "../../styles/mixins" as *;
+
 .navbar {
   width: 100vw;
   position: fixed;
@@ -24,11 +26,25 @@
       img {
         height: 90px;
         margin-right: 50px;
+
+        @include mobile {
+          display: none;
+        }
       }
 
       span {
         margin-right: 20px;
         cursor: pointer;
+
+        @include tablet {
+          display: none;
+        }
+
+        &.main-lks {
+          @include tablet {
+            display: block;
+          }
+        }
       }
     }
         
@@ -46,6 +62,12 @@
       span {
         margin-right: 15px;
         cursor: pointer;
+
+        &.notification {
+          @include mobile {
+            display: none;
+          }
+        }
       }
 
       .profile {
