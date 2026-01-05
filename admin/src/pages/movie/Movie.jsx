@@ -49,7 +49,7 @@ export default function Movie() {
       const updated = prev.includes(genre)
         ? prev.filter((g) => g !== genre)
         : [...prev, genre];
-      if (!prev.includes(genre) && !updatedParams.current.includes("genre")) updatedParams.current.push("genre");
+      if (!updatedParams.current.includes("genre")) updatedParams.current.push("genre");
 
       setUpdatedMovie((prevMovie) => ({
         ...prevMovie,
