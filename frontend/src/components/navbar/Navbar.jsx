@@ -29,9 +29,9 @@ function Navbar() {
           <Link to="/movies" className="link">
             <span className="main-lks">Movies</span>
           </Link>
-          <span>New & Popular</span>
-          <span>My List</span>
-          <span>Browse by Language</span>
+          <span className="inactive">New & Popular</span>
+          <span className="inactive">My List</span>
+          <span className="inactive">Browse by Language</span>
         </div>
         <div className="right">
         <span><Search /></span>

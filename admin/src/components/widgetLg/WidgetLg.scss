@@ -47,7 +47,7 @@
           border-style: none;
           border-radius: 5px;
           color: var(--clr-font-prim);
-          cursor: pointer;
+          cursor: default;
 
           &.approved {
             background-color: $clr-success;

@@ -40,7 +40,8 @@
         }
 
         .inactive {
-          color: var(--clr-font-ter)
+          color: var(--clr-font-ter);
+          cursor: default;
         }
       }
     }

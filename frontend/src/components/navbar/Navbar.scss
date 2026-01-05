@@ -36,6 +36,11 @@
         margin-right: 20px;
         cursor: pointer;
 
+        &.inactive {
+          color: grey;
+          cursor: default;
+        }
+
         @include tablet {
           display: none;
         }
