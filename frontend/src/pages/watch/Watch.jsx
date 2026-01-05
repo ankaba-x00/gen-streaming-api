@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 export default function Watch() {
   const location = useLocation();
-  console.log(location); 
+  //console.log(location); 
   const movie = location.state?.movie;
   return (
     <div className="watch">
