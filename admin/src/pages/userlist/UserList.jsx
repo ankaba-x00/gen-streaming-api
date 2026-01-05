@@ -72,8 +72,8 @@ export default function UserList() {
     } },
     { field: "username", headerName: "USERNAME", width: 180, headerAlign: "center", align: "center" },
     { field: "email", headerName: "EMAIL", width: 220, headerAlign: "center", align: "center" },
-    { field: "isAdmin", headerName: "ADMIN", width: 90, headerAlign: "center", align: "center" },
-    { field: "isActive", headerName: "STATUS", width: 90, headerAlign: "center", align: "center" },
+    { field: "role", headerName: "ROLE", width: 90, headerAlign: "center", align: "center" },
+    { field: "isActive", headerName: "ACTIVE", width: 90, headerAlign: "center", align: "center" },
     { field: "action", headerName: "ACTION", width: 100, headerAlign: "center", align: "center", renderCell: (params) => {
       return (
         <div className="actions">

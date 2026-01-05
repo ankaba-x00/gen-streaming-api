@@ -14,8 +14,8 @@ import { createUser } from "../../context/userContext/ApiCalls";
 
 export default function NewUser() {
   const [user, setUser] = useState({
-    isAdmin: "no",
-    isActive: "yes",
+    role: "USER",
+    isActive: true,
   });
   const options = useMemo(() => countryList().getData(), []);
   const [img, setImg] = useState(null);
@@ -86,7 +86,7 @@ export default function NewUser() {
 
     if (!user) return;
 
-    const validationError = validateUser(user);
+    const validationError = validateUser(user, { mode: "create" });
       if (validationError) {
         setValidationMessage(validationError);
         setSnackbarValidationOpen(true);
@@ -197,7 +197,7 @@ export default function NewUser() {
               type="password" 
               name="password"
               id="password" 
-              placeholder="********" 
+              placeholder="********"
               className="item"
               onChange={handleTextChange}
             />
@@ -205,14 +205,14 @@ export default function NewUser() {
           <div className="enter-item">
             <label htmlFor="admin" className="label">Admin</label>
             <select 
-              name="isAdmin" 
+              name="role" 
               id="admin" 
               className="item-select"
-              value={user.isAdmin}
+              value={user.role}
               onChange={handleTextChange}
             >
-              <option value="no">No</option>
-              <option value="yes">Yes</option>
+              <option value="USER">No</option>
+              <option value="ADMIN">Yes</option>
             </select>
           </div>
         </div>
@@ -245,7 +245,7 @@ export default function NewUser() {
               type="text"
               id="phone"
               name="phone"
-              placeholder="01-111-111-1"
+              placeholder="+123456789"
               className="item"
               onChange={handleTextChange}
             />
@@ -296,14 +296,18 @@ export default function NewUser() {
           <div className="enter-item">
             <label htmlFor="active" className="label">Active</label>
             <select 
-              name="isActive" 
               id="active" 
               className="item-select"
-              value={user.isActive}
-              onChange={handleTextChange}
+              value={user.isActive ? "true" : "false"}
+              onChange={(e) =>
+                setUser(prev => ({
+                  ...prev,
+                  isActive: e.target.value === "true"
+                }))
+              }
             >
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
+              <option value="true">Yes</option>
+              <option value="false">No</option>
             </select>
           </div>
           <button 

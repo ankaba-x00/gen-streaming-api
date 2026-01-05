@@ -128,29 +128,6 @@
                 box-shadow: 0 0 5px $clr-boxshadow;
               }
             }
-
-            .item-radio {
-              display: grid;
-              grid-template-columns: 1rem auto;
-              margin-left: 20px;
-              border: none;
-                        
-              label {
-                padding: 5px;
-                margin-left: 5px;
-                cursor: pointer;
-              }
-
-              input {
-                &:hover {
-                  cursor: pointer;
-                }
-
-                &:checked {
-                  accent-color: var(--clr-font-ter);
-                }
-              }
-            }
           }
         }
 
@@ -179,6 +156,40 @@
               transform: translate(-50%, -50%);
               font-size: 50px;
               cursor: pointer;  
+            }
+          }
+
+          .update-item {
+            display: flex;
+            flex-direction: column;
+            margin: 15px 0;
+            width: 100%;
+
+            .label {
+              margin-bottom: 5px;
+            }
+
+            .item-radio {
+              display: grid;
+              grid-template-columns: 1rem auto;
+              margin-left: 20px;
+              border: none;
+                        
+              label {
+                padding: 5px;
+                margin-left: 5px;
+                cursor: pointer;
+              }
+
+              input {
+                &:hover {
+                  cursor: pointer;
+                }
+
+                &:checked {
+                  accent-color: var(--clr-font-ter);
+                }
+              }
             }
           }
                       

@@ -5,13 +5,13 @@ import { AuthContext } from "../../context/authContext/AuthContext";
 import { loginCall } from "../../context/authContext/ApiCalls";
 
 export default function Login({ handleChange, isChecked }) {
-  const [email, setEmail] = useState("");
+  const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const { isFetching, dispatch } = useContext(AuthContext);
 
   const handleLogin = (e) => {
     e.preventDefault();
-    loginCall( { email, password }, dispatch);
+    loginCall( { identifier, password }, dispatch);
   }
 
   return (
@@ -26,7 +26,7 @@ export default function Login({ handleChange, isChecked }) {
           type="text" 
           placeholder="email" 
           className="login-input"
-          onChange={(e) => {setEmail(e.target.value)}}
+          onChange={(e) => {setIdentifier(e.target.value)}}
         />
         <input 
           type="password" 

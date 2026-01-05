@@ -105,14 +105,14 @@ export default function User() {
     e.preventDefault();
     if (!updatedUser) return;
     
-    const noneFileMap = [ "name", "username", "email", "password", "gender", "country", "phone", "isAdmin", "isActive" ];
+    const noneFileMap = [ "name", "username", "email", "password", "gender", "country", "phone", "role", "isActive" ];
     const nonUpdatedKeys = noneFileMap.filter(key => !updatedParams.current.includes(key));
     const mergedUser = { ...user, ...updatedUser };
       nonUpdatedKeys.forEach(key => {
       mergedUser[key] = user[key];
     });
 
-    const validationError = validateUser(mergedUser);
+    const validationError = validateUser(mergedUser, { mode: "update" });
       if (validationError) {
         setValidationMessage(validationError);
         setSnackbarValidationOpen(true);
@@ -190,7 +190,7 @@ export default function User() {
             </div>
           </div>
           <div className="profile-section">
-            <span className="section-title">Conatct Details</span>
+            <span className="section-title">Contact Details</span>
             <div className="section-entry">
               <PhoneIphoneOutlined className="icon" />
               <span>{user.phone}</span>
@@ -204,7 +204,7 @@ export default function User() {
             <span className="section-title">Status</span>
             <div className="section-entry">
               <AdminPanelSettings className="icon" />
-              <span>{user.isAdmin ? "admin user" : "normal user"}</span>
+              <span>{user.role == "ADMIN" ? "admin user" : "normal user"}</span>
             </div>
             <div className="section-entry">
               <History className="icon" />
@@ -302,6 +302,31 @@ export default function User() {
                 />
               </div>
               <div className="update-item">
+                <label htmlFor="password" className="label">New Password</label>
+                <input 
+                  type="password" 
+                  id="password" 
+                  name="password"
+                  placeholder="********" 
+                  className="item"
+                  onChange={handleTextChange}
+                />
+              </div>
+            </div>
+            <div className="right-form">
+              <div className="update-photo">
+                <img src={user.imgProfile || preview || avatar} alt="" />
+                <label htmlFor="file"><UploadFile className="icon"/></label>
+                <input 
+                  type="file"
+                  id="file"
+                  name="imgProfile"
+                  accept="image/*"
+                  onChange={handleFileChange} 
+                  style={{ display: "none" }}
+                />
+              </div>
+              <div className="update-item">
                 <fieldset className="item-radio">
                   <legend className="label">Gender</legend>
                   <input 
@@ -332,20 +357,6 @@ export default function User() {
                   />
                   <label htmlFor="other">Other</label>
                 </fieldset>
-              </div>
-            </div>
-            <div className="right-form">
-              <div className="update-photo">
-                <img src={user.imgProfile || preview || avatar} alt="" />
-                <label htmlFor="file"><UploadFile className="icon"/></label>
-                <input 
-                  type="file"
-                  id="file"
-                  name="imgProfile"
-                  accept="image/*"
-                  onChange={handleFileChange} 
-                  style={{ display: "none" }}
-                />
               </div>
               <button 
                 className="update-user-btn"
