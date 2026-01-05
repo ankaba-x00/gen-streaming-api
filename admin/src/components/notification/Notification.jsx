@@ -21,7 +21,7 @@ export default function Notification({snType, snOpen, snClose, snMessage="", snH
   } else if (snType === "upload") {
     snText = "Upload started ...";
     snType = "info";
-  } else if (snType === "validation") {
+  } else if (snType === "validation" || snType === "auth") {
     snText = snMessage;
     snType = "error";
   } else if (snType === "error") snText = "Upload or creation failed!";

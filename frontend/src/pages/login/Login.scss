@@ -43,6 +43,17 @@
       flex-direction: column;
       justify-content: space-around;
 
+      .warning {
+        margin: 0 auto;
+        width: 85%;
+        padding: 15px;
+        border-radius: 5px;
+        background-color: orange;
+        opacity: 0.85;
+        color: black;
+        text-align: center;
+      }
+
       input {
         height: 40px;
         border-radius: 5px;

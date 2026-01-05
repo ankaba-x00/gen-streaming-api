@@ -3,16 +3,32 @@ import Toggle from "../../components/toggle/Toggle";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/authContext/AuthContext";
 import { loginCall } from "../../context/authContext/ApiCalls";
+import Notification from "../../components/notification/Notification"; 
 
 export default function Login({ handleChange, isChecked }) {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const { isFetching, dispatch } = useContext(AuthContext);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    loginCall( { identifier, password }, dispatch);
+    const result = await loginCall( 
+      { identifier, password }, 
+      dispatch
+    );
+
+    if (!result.success) {
+      setSnackbarMessage(result.message);
+      setSnackbarOpen(true);
+    }
   }
+
+  const handleSnackbarClose = (_, reason) => {
+    if (reason === "clickaway") return;
+    setSnackbarOpen(false);
+  };
 
   return (
     <div className="login">
@@ -43,6 +59,12 @@ export default function Login({ handleChange, isChecked }) {
         </button>
       </form>
       </div>
+      <Notification
+        snType="auth"
+        snOpen={snackbarOpen}
+        snClose={handleSnackbarClose}
+        snMessage={snackbarMessage}
+      />
     </div>
   )
 }

@@ -8,12 +8,22 @@ import { Link } from "react-router-dom";
 export default function Login() {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
 
   const {dispatch} = useContext(AuthContext);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    loginCall({ identifier, password }, dispatch) 
+    const result = await loginCall(
+      { identifier, password }, 
+      dispatch
+    );
+
+    if (!result.success) {
+      setError(result.message);
+    } else {
+      setError(null);
+    }
   }
 
   return (
@@ -26,6 +36,7 @@ export default function Login() {
       <div className="container">
         <form>
           <h1>Sign In</h1>
+          {error && <div className="warning">{error}</div>}
           <input 
             type="text" 
             placeholder="Email or username" 

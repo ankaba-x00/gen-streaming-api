@@ -6,9 +6,18 @@ export const loginCall = async (user, dispatch) => {
   try {
     const res = await axios.post("/api/auth/login", user);
     dispatch(loginSuccess(res.data));
+    return { 
+      success: true 
+    };
   } catch (err) {
     dispatch(loginFailure());
-    console.error(err);
-    throw err;
+    const message =
+      err?.response?.data ||
+      "Login failed. Please try again.";
+    return {
+      success: false,
+      message,
+      status: err?.response?.status,
+    };
   }
 };
