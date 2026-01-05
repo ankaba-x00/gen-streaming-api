@@ -8,7 +8,7 @@ import { AuthContext } from "../../context/authContext/AuthContext";
 import { logout } from "../../context/authContext/AuthActions";
 
 export default function Topbar({ handleChange, isChecked }) {
-  const { dispatch } = useContext(AuthContext);
+  const { user, dispatch } = useContext(AuthContext);
 
   return (
     <div className="topbar">
@@ -31,7 +31,7 @@ export default function Topbar({ handleChange, isChecked }) {
           <Settings className="icon inactive" />
         </div>
         <div className="icon-container dropdown">
-          <img src={avatar} alt="" />
+          <img src={user?.imgProfile || avatar} alt="" />
           <div className="dropdown-options">
             <span>Settings</span>
             <span onClick={() => dispatch(logout())}>Logout</span>
