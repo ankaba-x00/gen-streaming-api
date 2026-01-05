@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./WidgetSm.scss";
 import { Visibility } from "@mui/icons-material";
 import axios from "axios";
@@ -30,14 +31,19 @@ export default function WidgetSm() {
       <ul className="widget-list">
         {newUsers.map((user) => (
           <li className="list-item" key={user._id}>
-            <img src={user.profilePic || defaultAvatar} alt="" />
+            <img src={user.imgProfile || defaultAvatar} alt="" />
             <div className="user">
               <span className="user-name">{user.username}</span>
             </div>
-            <button className="widget-btn">
-              <Visibility className="icon"/>
-              Display
-            </button>
+            <Link
+              to={`/user/${user._id}`}
+              state={{ user }}
+            >
+              <button className="widget-btn">
+                <Visibility className="icon"/>
+                Display
+              </button>
+            </Link>
           </li>
         ))}
       </ul>

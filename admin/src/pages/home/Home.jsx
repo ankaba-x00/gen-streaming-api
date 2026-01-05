@@ -1,7 +1,7 @@
 import "./Home.scss";
 import Featured from "../../components/Featured/Featured";
 import Chart from "../../components/chart/Chart";
-import { userData } from "../../dummyData";
+//import { userData } from "../../dummyData";
 import WidgetSm from "../../components/widgetSm/WidgetSm";
 import WidgetLg from "../../components/widgetLg/WidgetLg";
 import { useEffect, useMemo, useState } from "react";

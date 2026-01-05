@@ -13,7 +13,6 @@ export default function ListItem({ index, item}) {
     const getMovie = async () => {
       try {
         const res = await api.get("/movies/find/" + item);
-        console.log("MOVIE RESPONSE:", res.data);
         setMovie(res.data)
       } catch (err) {
         console.log(err)
