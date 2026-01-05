@@ -6,7 +6,7 @@ const ListSchema = new mongoose.Schema(
       type: String,
       minlength: [1, "Title must be at least 1 character"],
       maxlength: [100, "Title cannot exceed 100 characters"],
-      match: [/^[A-Za-z0-9\s-]+$/, "Title may only contain letters, numbers, spaces and -"],
+      match: [/^[A-Za-z0-9\s-\']+$/, "Title may only contain letters, numbers, spaces and -"],
       required: [true, "Title is required"],
     },
     type: { 

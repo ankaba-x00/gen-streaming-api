@@ -1,5 +1,5 @@
 export default function validateList(list, movies) {
-  const titleRegex = /^[A-Za-z0-9\s-]+$/;
+  const titleRegex = /^[A-Za-z0-9\s-\']+$/;
 
   if (!list?.title || list?.title.trim() === "" || list?.title.length >= 100 || !titleRegex.test(list?.title.trim())) {
     return `
