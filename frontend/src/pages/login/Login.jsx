@@ -6,14 +6,14 @@ import { AuthContext } from "../../authContext/AuthContext";
 import { Link } from "react-router-dom";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
+  const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
 
   const {dispatch} = useContext(AuthContext);
 
   const handleLogin = (e) => {
     e.preventDefault();
-    loginCall({ email, password }, dispatch) 
+    loginCall({ identifier, password }, dispatch) 
   }
 
   return (
@@ -26,8 +26,17 @@ export default function Login() {
       <div className="container">
         <form>
           <h1>Sign In</h1>
-          <input type="email" placeholder="Email or phone number" onChange={(e) => setEmail(e.target.value)}/>
-          <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+          <input 
+            type="text" 
+            placeholder="Email or username" 
+            value={identifier}
+            onChange={(e) => setIdentifier(e.target.value)}
+          />
+          <input 
+            type="password" 
+            placeholder="Password" 
+            onChange={(e) => setPassword(e.target.value)}
+          />
           <button className="loginBtn" onClick={handleLogin}>Sign In</button>
           <span>New to Netflix? <Link to="/register" className="link"><b>Sign up now.</b></Link></span>
           <small>

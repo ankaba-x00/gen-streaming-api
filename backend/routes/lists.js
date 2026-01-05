@@ -1,10 +1,10 @@
 const router = require("express").Router();
 const List = require("../models/List");
-const verify = require("../verifyToken");
+const verify = require("../utils/verifyToken");
 
 //Create
 router.post("/", verify, async (req, res) => {
-  if (req.user.isAdmin) {
+  if (req.user.role == "ADMIN") {
     const newList = new List(req.body);
     try {
       const savedList = await newList.save();
@@ -19,7 +19,7 @@ router.post("/", verify, async (req, res) => {
 
 //Delete
 router.delete("/:id", verify, async (req, res) => {
-  if (req.user.isAdmin) {
+  if (req.user.role == "ADMIN") {
     try {
       await List.findByIdAndDelete(req.params.id);
       res.status(200).json("List has been deleted");
@@ -33,7 +33,7 @@ router.delete("/:id", verify, async (req, res) => {
 
 //Update
 router.put("/:id", verify, async (req, res) => {
-  if (req.user.isAdmin) {
+  if (req.user.role == "ADMIN") {
     try {
       const updatedList = await List.findByIdAndUpdate(
         req.params.id, 

@@ -7,7 +7,6 @@ const UserSchema = new mongoose.Schema(
       trim: true,
       match: [/^[A-Za-z]+(?:\s+[A-Za-z]+)+$/, "Name may only contain letters and spaces and must contain 2 or more words"],
       required: false
-      //required: [true, "Full name is required"],
     },
     username: { 
       type: String,
@@ -22,6 +21,7 @@ const UserSchema = new mongoose.Schema(
       trim: true,
       match: [/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/, "Email address allows letters, numbers, dot, underscore, percent, plus and hyphen before @ and requires a TLD of 2 or more letters"],
       required: [true, "Email is required"],
+      unique: true
     },
     password: { 
       type: String, 
@@ -35,18 +35,16 @@ const UserSchema = new mongoose.Schema(
     gender: {
       type: String,
       enum: ["male", "female", "other"],
-      //required: [true, "Gender is required"]
       required: false
     },
     storageHash: {
       type: String, 
-      //required: [true, "Storage hash is required for objects containing all media files"],
       required: false,
-      unique: true 
+      unique: true,
+      sparse: true
     },
     country: {
       type: String,
-      //required: [true, "Country of residence is required"]
       required: false
     },
     imgProfile: { 
@@ -60,10 +58,11 @@ const UserSchema = new mongoose.Schema(
       match: [/^\+[0-9]+$/, "Phone must start with + followed by only numbers"],
       required: false
     },
-    isAdmin: { 
-      type: Boolean,
-      default: false,
-      required: [true, "Admin status is required"] 
+    role: {
+      type: String, 
+      enum: ["USER", "ADMIN"], 
+      default: "USER",
+      required: [true, "Role is required"]
     },
     isActive: { 
       type: Boolean, 

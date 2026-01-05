@@ -1,10 +1,10 @@
 const router = require("express").Router();
 const Movie = require("../models/Movie");
-const verify = require("../verifyToken");
+const verify = require("../utils/verifyToken");
 
 //Create
 router.post("/", verify, async (req, res) => {
-  if (req.user.isAdmin) {
+  if (req.user.role == "ADMIN") {
     const newMovie = new Movie(req.body);
     try {
       const savedMovie = await newMovie.save();
@@ -19,7 +19,7 @@ router.post("/", verify, async (req, res) => {
 
 //Update
 router.put("/:id", verify, async (req, res) => {
-  if (req.user.isAdmin) {
+  if (req.user.role == "ADMIN") {
     try {
       const updatedMovie = await Movie.findByIdAndUpdate(
         req.params.id, 
@@ -37,7 +37,7 @@ router.put("/:id", verify, async (req, res) => {
 
 //Delete
 router.delete("/:id", verify, async (req, res) => {
-  if (req.user.isAdmin) {
+  if (req.user.role == "ADMIN") {
     try {
       await Movie.findByIdAndDelete(req.params.id);
       res.status(200).json("Movie has been deleted");
@@ -85,7 +85,7 @@ router.get("/random", verify, async (req, res) => {
 
 //Get all 
 router.get("/", verify, async (req, res) => {
-  if (req.user.isAdmin) {
+  if (req.user.role == "ADMIN") {
     try {
       const movies = await Movie.find();
       res.status(200).json(movies.reverse());

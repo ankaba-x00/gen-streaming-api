@@ -1,99 +1,127 @@
 const router = require("express").Router();
 const User = require("../models/User");
-const CryptoJS = require("crypto-js");
-const verify = require("../verifyToken");
+const bcrypt = require("bcrypt");
+const verify = require("../utils/verifyToken");
+const generateStorageHash = require("../utils/generateHash");
 
-//Create
+//Create Admin
 router.post("/", verify, async (req, res) => {
-  if (req.user.isAdmin) {
-    const newUser = new User(req.body);
-    try {
-      const savedUser = await newUser.save();
-      res.status(201).json(savedUser);
-    } catch (err) {
-      if (err.code === 11000) {
-        return res.status(400).json({ error: "Username or email already exists" });
-      }
-        res.status(500).json(err);
-    }
-  } else {
-    res.status(403).json("Permission denied.");
+  if (req.user.role !== "ADMIN") {
+    return res.status(403).json("Permission denied!");
+  }
+
+  try {
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    const newUser = new User({
+      username: req.body.username,
+      email: req.body.email,
+      password: hashedPassword,
+      storageHash: req.body.storageHash ?? generateStorageHash(),
+      role: req.body.role === "ADMIN" ? "ADMIN" : "USER",
+      isActive: req.body.isActive,
+      name: req.body.name,
+      gender: req.body.gender,
+      phone: req.body.phone,
+      country: req.body.country,
+      imgProfile: req.body.imgProfile,      
+    });
+    const savedUser = await newUser.save();
+    const { password, ...info } = savedUser._doc;
+    res.status(201).json(info);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
   }
 });
 
 //Update
 router.put("/:id", verify, async (req, res) => {
-  if (req.user.id === req.params.id || req.user.isAdmin) {
-    if (req.body.password) {
-      req.body.password = CryptoJS.AES.encrypt(
-        req.body.password,
-        process.env.TOKEN_KEY
-      ).toString();
-    }
+  if (req.user.id !== req.params.id && req.user.role !== "ADMIN") {
+    return res.status(403).json("You can update only your own account!");
+  }
 
     try {
-      const updatedUser = await User.findByIdAndUpdate(
-        req.params.id,
-        {
-          $set: req.body,
-        },
-        { new: true }
-      );
-      res.status(200).json(updatedUser);
-    } catch (err) {
-      res.status(500).json(err);
+    const updateData = { ...req.body };
+    if (req.user.role !== "ADMIN") {
+      delete updateData.role;
     }
-  } else {
-    res.status(403).json("You can update only your account!");
+    if (updateData.password) {
+      updateData.password = await bcrypt.hash(updateData.password, 10);
+    }
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.id,
+      { $set: updateData },
+      { new: true }
+    );
+    const { password, ...info } = updatedUser._doc;
+    res.status(200).json(info);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
   }
 });
 
 //Delete
 router.delete("/:id", verify, async (req, res) => {
-  if (req.user.id === req.params.id || req.user.isAdmin) {
-    try {
-      await User.findByIdAndDelete(req.params.id);
-      res.status(200).json("User has been deleted.");
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  } else {
-    res.status(403).json("You can delete only your account!");
+  if (req.user.id !== req.params.id && req.user.role !== "ADMIN") {
+    return res.status(403).json("You can delete only your own account!");
+  }
+
+  try {
+    await User.findByIdAndDelete(req.params.id);
+    res.status(200).json("User has been deleted.");
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
   }
 });
 
 //Get
-router.get("/find/:id", async (req, res) => {
+router.get("/find/:id", verify, async (req, res) => {
+  if (req.user.id !== req.params.id && req.user.role !== "ADMIN") {
+    return res.status(403).json("Permission denied!");
+  }
+
   try {
     const user = await User.findById(req.params.id);
     const { password, ...info } = user._doc;
     res.status(200).json(info);
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
 
 //Get All
 router.get("/", verify, async (req, res) => {
+  if (req.user.role !== "ADMIN") {
+    return res.status(403).json("Permission denied!");
+  }
+
   const query = req.query.new;
-  if (req.user.isAdmin) {
-    try {
-      const users = query
-        ? await User.find().sort({ _id: -1 }).limit(8)
-        : await User.find();
-      res.status(200).json(users);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  } else {
-    res.status(403).json("You are not allowed to see all users!");
+  try {
+    const users = query
+      ? await User.find().sort({ _id: -1 }).limit(8)
+      : await User.find();
+
+    const sanitized = users.map(({ _doc }) => {
+      const { password, ...info } = _doc;
+      return info;
+    });
+
+    res.status(200).json(sanitized);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
   }
 });
 
 //Get User Stats (users per month)
-router.get("/stats", async (req, res) => {
-  const today = new Date();
-  const lastYear = today.setFullYear(today.getFullYear() - 1)
+router.get("/stats", verify, async (req, res) => {
+  if (req.user.role !== "ADMIN") {
+    return res.status(403).json("Permission denied!");
+  }
+
   try {
     const data = await User.aggregate([
       {
@@ -108,8 +136,9 @@ router.get("/stats", async (req, res) => {
         },
       },
     ]);
-    res.status(200).json(data)
+    res.status(200).json(data);
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
