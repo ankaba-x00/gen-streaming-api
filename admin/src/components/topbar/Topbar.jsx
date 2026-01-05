@@ -20,15 +20,15 @@ export default function Topbar({ handleChange, isChecked }) {
           <Toggle handleChange={handleChange} isChecked={isChecked} />
         </div>
         <div className="icon-container">
-          <NotificationsNone className="icon" />
+          <NotificationsNone className="icon inactive" />
           <span className="icon-badge">2</span>
         </div>
         <div className="icon-container">
-          <Language className="icon" />
+          <Language className="icon inactive" />
           <span className="icon-badge">2</span>
         </div>
         <div className="icon-container">
-          <Settings className="icon" />
+          <Settings className="icon inactive" />
         </div>
         <div className="icon-container dropdown">
           <img src={avatar} alt="" />
