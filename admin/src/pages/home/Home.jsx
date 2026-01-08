@@ -1,5 +1,5 @@
 import "./Home.scss";
-import Featured from "../../components/Featured/Featured";
+import Featured from "../../components/featured/Featured";
 import Chart from "../../components/chart/Chart";
 //import { userData } from "../../dummyData";
 import WidgetSm from "../../components/widgetSm/WidgetSm";
