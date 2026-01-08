@@ -1,6 +1,6 @@
 # Fullstack Streaming Platform 
 
-A modern, secure, and scalable streaming platform backend built with Node.js, Express, MongoDB, and JWT authentication — designed to power admin dashboards and client streaming applications.
+A modern, secure, and scalable streaming platform backend built with Node.js, Express, MongoDB, and JWT authentication; designed to power admin dashboards and client streaming applications.
 
 ## Overview
 
@@ -9,65 +9,66 @@ This package includes two React frontend panels, client- and admin-side, and a R
 ## Core Features
 
 1) Authentication & Authorization
-- JWT-based authentication
-- Secure password hashing with bcrypt
-- Role-based access control (ADMIN, USER)
-- Token verification middleware
+  - JWT-based authentication
+  - Secure password hashing with bcrypt
+  - Role-based access control (ADMIN, USER)
+  - Token verification middleware
 
 2) User Management
-- User registration and login
-- Admin-only user creation
-- Profile updates (including image support)
-- Soft activation control (isActive)
-- Monthly user statistics (analytics-ready)
+  - User registration and login
+  - Admin-only user creation
+  - Profile updates (including image support)
+  - Soft activation control (isActive)
+  - Monthly user statistics (analytics-ready)
 
 3) Media & Lists
-- Movie and series support
-- Genre tagging and querying
-- List creation & updates
-- Content validation
-- Admin-only modification routes
+  - Movie and series support
+  - Genre tagging and querying
+  - List creation & updates
+  - Content validation
+  - Admin-only modification routes
 
 4) Analytics
-- Aggregated user statistics
-- Monthly signup tracking
-- Backend-ready chart data for dashboards
+  - Aggregated user statistics
+  - Monthly signup tracking
+  - Backend-ready chart data for dashboards
 
 ## Technical Stack
 
-|<div align="center">**Backend**</div>|<div align="center">**Frontend**</div>|<div align="center">**DB**</div>|
-
 1) Tools
-|------------|----------|------------|
-|   Node.js  |  React	|  MongoDB   |
-| Express.js |   Vite   |  Mongoose  |
+```
+|   Backend  | Frontend |    DB    |
+|------------|----------|----------|
+|   Node.js  |  React   | MongoDB  |
+| Express.js |   Vite   | Mongoose |
 |    JWT     |          | Firebase |
-|   bcrypt   |          |            |
+|   bcrypt   |          |          |
+```
 
 2) Security
-- JWT (JSON Web Tokens) with expiry and storage for network connection issues
-- bcrypt used for password storage hashing
-- Environment-based secrets (dotenv)
-- Protected routes and middleware
+  - JWT (JSON Web Tokens) with expiry and storage for network connection issues
+  - bcrypt used for password storage hashing
+  - Environment-based secrets (dotenv)
+  - Protected routes and middleware
 
 3) Database
-- MongoDB with aggregation pipelines
-- Firebase Cloud file storage
-- Optimized schema design
-- StorageHashing schema
-- Fully automated media upload and database ingestion pipeline
-- Indexed queries
+  - MongoDB with aggregation pipelines
+  - Firebase Cloud file storage
+  - Optimized schema design
+  - StorageHashing schema
+  - Fully automated media upload and database ingestion pipeline
+  - Indexed queries
 
 4) API Design 
-- RESTful architecture
-- Clean route separation for admin and client
-- Middleware-driven validation
-- Error-safe responses
+  - RESTful architecture
+  - Clean route separation for admin and client
+  - Middleware-driven validation
+  - Error-safe responses
 
 5) UI Design
-- Fully responsive design from mobile to wide-screen sizes
-- Browser-aware dark-light toggle
-- User-friendly notifications for upload, creation flow and errors
+  - Fully responsive design from mobile to wide-screen sizes
+  - Browser-aware dark-light toggle
+  - User-friendly notifications for upload, creation flow and errors
 
 6) Deployment
 - local environment
@@ -76,17 +77,17 @@ This package includes two React frontend panels, client- and admin-side, and a R
 ## Getting Started
 
 For backend and frontend
-1. Create a .env file 
-1.1. in backend root with MONGO_URL for MongoDB connection, TOKEN_KEY for JWT and PORT with port number 
-1.2. in frontend root with VITE_API_URL to connect backend which is usually localhost with backend port number 
-1.3. in admin root with same VITE_API_URL to connect backend, PORT number and Firebase dependencies (see Firebase documentation)
+1. Create a .env file <br>
+1.1. in backend root with MONGO_URL for MongoDB connection, TOKEN_KEY for JWT and PORT with port number <br>
+1.2. in frontend root with VITE_API_URL to connect backend which is usually localhost with backend port number <br>
+1.3. in admin root with same VITE_API_URL to connect backend, PORT number and Firebase dependencies (see Firebase documentation)<br>
 2. install dependencies for both frontends via `npm install`
-3. execute run commands locally (also for testing)
-3.1. for backend server via `npm start`
-3.2. for frontends via `npm run dev`
-4. setup docker
-4.1. check docker-compose.yml
-4.2. run via `docker-compose up --build`
+3. execute run commands locally (also for testing)<br>
+3.1. for backend server via `npm start`<br>
+3.2. for frontends via `npm run dev`<br>
+4. setup docker<br>
+4.1. check docker-compose.yml<br>
+4.2. run via `docker-compose up --build`<br>
 5. IMPORTANT: first frontend login, always assigns admin role to log into admin panel (alternatively use Postman)
 
 For db generation
