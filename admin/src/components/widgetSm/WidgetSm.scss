@@ -2,20 +2,15 @@
 @use "../../styles/mixins" as *;
 
 .widget-sm {
-  height: 450px;
+  height: 600px;
   padding: 30px;
   box-shadow: 0px 0px 11px 3px $clr-boxshadow;
-
-  @include laptop {
-    overflow-x: auto;
-    overflow-y: hidden;
-  }
+  overflow-x: auto;
+  overflow-y: auto;
 
   @include tablet {
     width: 100%;
     max-width: 100%;
-    overflow-x: none;
-    overflow-y: none;
   }
 
   @include mobile {
@@ -62,10 +57,11 @@
 
       button {
         height: 35px;
-        padding: 5px;
+        padding: 10px;
         display: flex;
         align-items: center;
         border-style: none;
+        border-radius: 5px;
         background-color: $clr-btn-light;
         cursor: pointer;
 

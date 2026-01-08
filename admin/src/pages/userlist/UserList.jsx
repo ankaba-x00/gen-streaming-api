@@ -62,7 +62,7 @@ export default function UserList() {
 
   const columns = [
     { field: "_id", headerName: "ID", width: 50,headerAlign: "center", align: "center" },
-    { field: "user", headerName: "USER", width: 220, headerAlign: "center", renderCell: (params) => {
+    { field: "user", headerName: "USER", width: 275, headerAlign: "center", renderCell: (params) => {
       return (
         <div className="user">
           <img className="user-avatar" src={params.row.imgProfile || avatar} alt=""/>
@@ -70,10 +70,10 @@ export default function UserList() {
         </div>
       )
     } },
-    { field: "username", headerName: "USERNAME", width: 180, headerAlign: "center", align: "center" },
-    { field: "email", headerName: "EMAIL", width: 220, headerAlign: "center", align: "center" },
-    { field: "role", headerName: "ROLE", width: 90, headerAlign: "center", align: "center" },
-    { field: "isActive", headerName: "ACTIVE", width: 90, headerAlign: "center", align: "center" },
+    { field: "username", headerName: "USERNAME", width: 175, headerAlign: "center", align: "center" },
+    { field: "email", headerName: "EMAIL", width: 240, headerAlign: "center", align: "center" },
+    { field: "role", headerName: "ROLE", width: 80, headerAlign: "center", align: "center" },
+    { field: "isActive", headerName: "ACTIVE", width: 80, headerAlign: "center", align: "center" },
     { field: "action", headerName: "ACTION", width: 100, headerAlign: "center", align: "center", renderCell: (params) => {
       return (
         <div className="actions">
