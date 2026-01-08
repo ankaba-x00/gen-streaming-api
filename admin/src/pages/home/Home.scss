@@ -17,7 +17,6 @@
     grid-template-columns: 1fr 2fr;
 
     @include tablet {
-      height: 1070px;
       grid-template-columns: 1fr;
       column-gap: 0px;
       row-gap: 0;
@@ -25,7 +24,6 @@
     }
 
     @include mobile {
-      max-height: max-content;
       grid-template-columns: 1fr;
     }
   }
