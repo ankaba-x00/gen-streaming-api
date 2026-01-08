@@ -14,7 +14,7 @@
     row-gap: 0px;
     margin-top: 20px;
     align-items: start;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: repeat(2, 1fr);
 
     @include tablet {
       grid-template-columns: 1fr;

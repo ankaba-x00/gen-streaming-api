@@ -97,8 +97,9 @@ export default function UserList() {
       <Paper 
         className="userlist" 
         sx={{ 
-          height: "90vh", 
-          width: "85vw",
+          height: "100%", 
+          display: "flex",
+          flexDirection: "column",
           backgroundColor: "var(--clr-background)", 
           color: "var(--clr-font-prim)",
         }}>
@@ -111,7 +112,8 @@ export default function UserList() {
           disableRowSelectionOnClick
           checkboxSelection
           disableVirtualization
-          sx={{ 
+          sx={{
+            flex: 1,
             border: 0,
             backgroundColor: "var(--clr-background)",
             color: "var(--clr-font-prim)",

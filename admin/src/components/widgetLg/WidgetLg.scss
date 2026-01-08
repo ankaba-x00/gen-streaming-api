@@ -8,23 +8,19 @@
 
   @include laptop {
     overflow-x: auto;
-    overflow-y: hidden;
+    overflow-y: auto;
   }
 
   @include tablet {
     width: 100%;
     max-width: 100%;
     margin-top: 20px;
-    overflow-x: none;
-    overflow-y: none;
   }
 
   @include mobile {
     width: 100%;
     min-width: 100%;
     margin-top: 20px;
-    overflow-x: auto;
-    overflow-y: hidden;
   }
 
   .widget-header {
@@ -34,15 +30,15 @@
 
   .widget-table {
     margin: 0 auto;
-    min-width: 600px;
-    max-width: 100%;
+    min-width: 650px;
     margin-top: 30px;
 
     .table-tr {
       text-align: center;
+      font-size: 14px;
 
       > *:not(:last-child) {
-        padding-right: 20px;
+        padding-right: 5px;
       }
 
       th {
@@ -55,11 +51,11 @@
         align-items: center;
 
         img {
-          width: 50px;
-          height: 50px;
+          width: 45px;
+          height: 45px;
           border-radius: 50%;
           object-fit: cover;
-          margin-right: 5px;
+          margin-right: 8px;
         }
 
         .name {
@@ -69,7 +65,7 @@
 
       .status {
         .status-btn {
-          width: 100px;
+          width: 90px;
           padding: 10px;
           border-style: none;
           border-radius: 5px;
