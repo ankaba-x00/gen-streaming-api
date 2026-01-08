@@ -116,7 +116,7 @@ router.get("/", verify, async (req, res) => {
   }
 });
 
-//Get User Stats (users per month)
+//Get User Stats (users per month per year)
 router.get("/stats", verify, async (req, res) => {
   if (req.user.role !== "ADMIN") {
     return res.status(403).json("Permission denied!");
@@ -126,15 +126,25 @@ router.get("/stats", verify, async (req, res) => {
     const data = await User.aggregate([
       {
         $project: {
+          year: { $year: "$createdAt" },
           month: { $month: "$createdAt" },
         },
       },
       {
         $group: {
-          _id: "$month",
+          _id: {
+            year: "$year",
+            month: "$month",
+          },
           total: { $sum: 1 },
         },
       },
+      {
+        $sort: {
+          "_id.year": 1,
+          "_id.month": 1,
+        }
+      }
     ]);
     res.status(200).json(data);
   } catch (err) {

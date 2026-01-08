@@ -34,11 +34,16 @@ export default function Home() {
             token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
           }
         })
-        const statsList = res.data.sort((a, b) => a._id - b._id);
-        const statsData = statsList.map((item) => ({
-          name: MONTHS[item._id - 1],
-          "New User": item.total
-        }));
+        const statsData = res.data
+          .map((item) => {
+            const { year, month } = item._id;
+            return {
+              date: new Date(year, month -1, 1),
+              name: `${MONTHS[month -1]} ${year}`,
+              "New User": item.total
+            };
+          })
+          .sort((a, b) => a.date - b.date)
 
         setUserStats(statsData);
       } catch (err) {
