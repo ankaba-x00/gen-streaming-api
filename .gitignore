@@ -59,3 +59,6 @@ db/node_modules/
 db/.env
 db/firebase-key.json
 db/install_requirements.txt
+
+# docs specific
+docs/demo_na_dp_v1.0.0.mp4
