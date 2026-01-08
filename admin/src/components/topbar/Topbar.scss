@@ -1,9 +1,10 @@
 @use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
 .topbar {
   width: 100%;
-  height: 80px;
-  padding: 20px;
+  min-height: 80px;
+  max-height: max-content;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -13,39 +14,167 @@
   z-index: 100;
     
   .top-left {
+    display: flex;
+    flex-direction: column;
     height: 100%;
 
-    img {
+    .logo {
+      margin: 20px;
       width: 300px;
       cursor: pointer;
+    }
+
+    .logo.small {
+      display: none
+    }
+
+    @include mobile {
+      .logo.big {
+        display: none;
+      }
+
+      .logo.small {
+        display: block;
+        margin: 0;
+        padding-top: 10px;
+        width: 200px;
+      }
+    }
+
+    .menu-icon {
+      display: none;
+      
+
+      @include mobile {
+        display: block;
+        margin-left: 10px;
+        cursor: pointer;
+      }
     }
   }
 
   .top-right {
-    display: flex;
+    padding-top: 10px;
+    display: grid;
     align-items: center;
-    justify-content: center;
 
-    .toggle-container {
-      border-right: 2px solid var(--clr-font-prim);
-      margin-right: 10px;
+    @include desktop {
+      margin-right: 40px;
     }
 
-    .icon-container {
-      position: relative;
-      margin-right: 15px;
+    @include laptop {
+      grid-template-columns: repeat(3, 1fr);
+      margin-right: -30px;
+    }
+
+    @include tablet {
+      margin-top: 20px;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      margin-left: -20px;
+    }
+
+    @include mobile {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      margin-top: -20px;
+      margin-left: -20px;
+    }
+
+
+    .icon-group {
+      grid-row: 1;
       display: flex;
       align-items: center;
-      justify-content: center;
-      cursor: pointer;
+      gap: 15px;
 
-      .icon {
-        font-size: 30px;
+      @include laptop {
+        grid-column: 2 / 3;
       }
 
-      .inactive {
-        color: var(--clr-font-ter);
-        cursor: default;
+      @include tablet {
+        grid-column: 1 / 2;
+      }
+
+      @include mobile {
+        grid-column: 1 / 2;
+      }
+
+      .icon-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        .icon {
+          font-size: 30px;
+
+          @include mobile {
+            font-size: 25px;
+          }
+        }
+
+        .inactive {
+          color: var(--clr-font-ter);
+          cursor: default;
+        }
+
+        .icon-badge {
+          position: absolute;
+          top: -8px;
+          left: 18px;
+          height: 20px;
+          width: 20px;
+          border-radius: 50%;
+          background-color: $clr-accent;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+        }
+      }
+    }
+
+    .toggle-container {
+      padding-top: 5px;
+      grid-column: 1 / 2;
+      grid-row: 1;
+
+      @include laptop {
+        grid-row: 1;
+      }
+
+      @include tablet {
+        grid-row: 2;
+      }
+
+      @include mobile {
+        grid-row: 2;
+      }
+    }
+
+    .dropdown {
+      grid-row: 1;
+      display: flex;
+      align-items: center;
+      position: relative;
+      margin-left: 10px;
+
+      @include laptop {
+        grid-column: 3 / 4;
+      }
+
+      @include tablet {
+        grid-column: 2 / 3;
+        grid-row: 1 / span 2;
+        margin-left: 0;
+      }
+
+      @include mobile {
+        grid-column: 2 / 3;
+        grid-row: 1 / span 2;
+        margin-left: 0;
       }
 
       img {
@@ -53,27 +182,8 @@
         height: 50px;
         border-radius: 50%;
         border: 2px solid #787878;
+        object-fit: cover;
       }
-
-      .icon-badge {
-        position: absolute;
-        top: -8px;
-        left: 18px;
-        height: 20px;
-        width: 20px;
-        border-radius: 50%;
-        background-color: $clr-accent;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-      }
-    }
-
-    .dropdown {
-      display: flex;
-      align-items: center;
-      position: relative; 
 
       .dropdown-options {
         display: none;

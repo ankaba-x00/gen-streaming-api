@@ -1,11 +1,14 @@
 @use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
 .movie {
   flex: 6;
+  min-width: 0;
   padding: 20px;
 
   .movie-header {
-    width: 95%;
+    width: 100%;
+    max-width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -31,7 +34,8 @@
   }
 
   .movie-body {
-    width: 95%;
+    width: 100%;
+    max-width: 100%;
     height: max-content;
     margin-bottom: 20px;
     display: flex;
@@ -63,6 +67,11 @@
 
       .table {
         margin-left: 90px;
+
+        @include mobile {
+          margin-left: 0;
+          margin-top: 10px;
+        }
 
         tbody tr {
           td {
@@ -112,7 +121,8 @@
   }
 
   .movie-footer {
-    width: 95%;
+    width: 100%;
+    max-width: 100%;
     padding: 30px;
     box-shadow: 0px 0px 11px 3px $clr-boxshadow;
 
@@ -124,11 +134,35 @@
 
     .edit-form {
       width: 100%;
-      display: flex;
+      max-width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      grid-template-rows: auto;
+      grid-template-areas: "left middle right";
       gap: 10px;
+      overflow-x: auto;
+      overflow-y: hidden;
+
+      @include laptop {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-areas:
+          "middle left"
+          "middle right";
+      }
+
+      @include mobile {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 1fr);
+        grid-template-areas:
+          "left"
+          "middle"
+          "middle"
+          "right";
+      }
 
       .left {
-        flex: 2;
+        grid-area: left;
         padding-top: 15px;
         display: flex;
         flex-direction: column;
@@ -138,7 +172,7 @@
         }
 
         input {
-          width: 230px;
+          width: 200px;
           padding: 5px;
           margin-left: 20px;
           margin-bottom: 15px;
@@ -170,14 +204,20 @@
       }
 
       .middle {
-        flex: 4;
+        grid-area: middle;
         padding-top: 15px;
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
         justify-content: space-between;
+
+        @include laptop {
+          grid-template-columns: 1fr;
+          grid-row: repeat(2, 1fr);
+        }
 
         .section {
           width: 260px;
-
+          
           .update-photo {
             width: 200px;
             height: 120px;
@@ -226,15 +266,15 @@
       }
 
       .right {
-          flex: 1;
-          padding-top: 15px;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
+        grid-area: right;
+        padding-top: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
 
         .section {
           flex: 1;
-          width: 240px;
+          width: 220px;
           margin-bottom: 15px;
 
           .span{

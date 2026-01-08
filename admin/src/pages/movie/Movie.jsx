@@ -313,7 +313,7 @@ export default function Movie() {
             </select>
           </div>
           <div className="middle">
-            <div className="section">
+            <div className="section sec-left">
               <span className="label">Thumbnail Image</span>
               <div className="update-photo">
                 <img 
@@ -345,7 +345,7 @@ export default function Movie() {
                 ></textarea>
               </div>
             </div>
-            <div className="section">
+            <div className="section sec-right">
               <span className="label">Featured Image</span>
               <div className="update-photo">
                 <img 

@@ -13,7 +13,7 @@ import ListList from "./pages/listlist/ListList";
 import List from "./pages/list/List";
 import NewList from "./pages/newlist/NewList";
 import useLocalStorage from "use-local-storage";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import Login from "./pages/login/Login";
 import { AuthContext } from "./context/authContext/AuthContext";
 
@@ -23,11 +23,17 @@ function PrivateRoute({ user, children }) {
 }
 
 function AuthLayout({ isDark, toggleDark, children }) {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   return (
     <>
-      <Topbar isChecked={isDark} handleChange={toggleDark}/>
+      <Topbar 
+        isChecked={isDark} 
+        handleChange={toggleDark}
+        onMenuClick={() => setSidebarOpen(prev => !prev)}
+      />
       <div className="container">
-        <Sidebar />
+        <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
         {children}
       </div>
     </>

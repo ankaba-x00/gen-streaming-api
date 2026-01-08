@@ -2,22 +2,11 @@
 
 .listlist {
   flex: 6;
-  padding: 20px;
-
-  // .list {
-  //   display: flex;
-  //   align-items: center;
-  //   margin-left: 10px;
-  //   height: 100%;
-
-  //   .list-img {
-  //     width: 30px !important;
-  //     height: 30px !important;
-  //     object-fit: cover !important;
-  //     border-radius: 50% !important;
-  //     margin-right: 10px !important;
-  //   }
-  // }
+  min-width: 0;
+  max-width: 95%;
+  padding: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
 
   .actions {
     height: 100%;

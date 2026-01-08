@@ -1,9 +1,32 @@
+@use "../../styles/mixins" as *;
+
 .home {
   flex: 6;
+  min-width: 0;
   padding: 20px;
 
   .home-widgets {
-    display: flex;
-    margin: 20px;
+    width: 100%;
+    max-width: 100%;
+    height: max-content;
+    display: grid;
+    column-gap: 20px;
+    row-gap: 0px;
+    margin-top: 20px;
+    align-items: start;
+    grid-template-columns: 1fr 2fr;
+
+    @include tablet {
+      height: 1070px;
+      grid-template-columns: 1fr;
+      column-gap: 0px;
+      row-gap: 0;
+      padding: 0;
+    }
+
+    @include mobile {
+      max-height: max-content;
+      grid-template-columns: 1fr;
+    }
   }
 }

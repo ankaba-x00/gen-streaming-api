@@ -2,10 +2,13 @@
 
 .newlist {
   flex: 6;
+  min-width: 0;
   padding: 20px;
   margin: 40px;
   height: max-content;
   box-shadow: 0px 0px 11px 3px $clr-boxshadow;
+  container-type: inline-size;
+  container-name: newlist;
 
   .newlist-header {
     font-size: 32px;
@@ -13,11 +16,12 @@
   }
 
   .newlist-form {
-    display: flex;
-
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    
     .section-left {
       flex: 2;
-      padding-left: 30px;
+      margin-left: 20px;
       display: flex;
       flex-direction: column;
 
@@ -32,7 +36,7 @@
         }
 
         input {
-          width: 350px;
+          width: 275px;
           padding: 5px;
           margin-left: 20px;
           margin-bottom: 5px;
@@ -62,7 +66,7 @@
       }
 
       .genre-section {
-        width: 100%;
+        width: max-content;
         margin-top: 15px;
         flex: 2;
         display: flex;
@@ -78,7 +82,8 @@
           margin-left: 20px;
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 3px;
+          row-gap: 3px;
+          column-gap: 8px;
 
           .dropdown-item {
             display: flex;
@@ -101,12 +106,13 @@
 
     .section-right {
       flex: 3;
-      padding-right: 30px;
+      margin-left: 20px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
 
       .content-section {
+        width: 450px;
         display: flex;
         flex-direction: column;
         margin-top: 15px;
@@ -121,6 +127,7 @@
         .searchbar {
           min-width: 250px;
           max-width: 100%;
+          margin-left: 20px;
           padding: 10px;
           border: none;
           border-bottom: 2px solid var(--clr-font-sec);
@@ -134,6 +141,7 @@
 
         .filter-toggle {
           width: 130px;
+          margin-left: 20px;
           padding: 5px;
           border: none;
           border-bottom: 2px solid var(--clr-font-sec);
@@ -150,11 +158,14 @@
         .content-list {
           min-width: 250px;
           max-width: 100%;
+          margin-left: 20px;
           padding: 5px;
           height: 250px;
           border: none;
           border-bottom: 2px solid var(--clr-font-sec);
           font-size: 14px;
+          overflow-x: auto;
+          overflow-y: auto;
           cursor: pointer;
 
           &:focus {
@@ -185,6 +196,22 @@
             background-color: $clr-btn-hover;
           }
         }
+      }
+    }
+  }
+
+  @container newlist (max-width: 850px) {
+    .newlist-form {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @container newlist (max-width: 475px) {
+    .newlist-form {
+      .section-left,
+      .section-right {
+        overflow-x: auto;
+        overflow-y: hidden;
       }
     }
   }

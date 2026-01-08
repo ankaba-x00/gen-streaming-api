@@ -2,7 +2,11 @@
 
 .userlist {
   flex: 6;
+  min-width: 0;
+  max-width: 95%;
   padding: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
 
   .user {
     display: flex;

@@ -266,7 +266,7 @@ export default function User() {
                   styles={{
                     control: (base, state) => ({
                       ...base,
-                      width: '220px',
+                      width: '200px',
                       border: '1px solid black',
                       borderRadius: '0',
                       marginLeft: '20px',

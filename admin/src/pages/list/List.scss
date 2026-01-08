@@ -1,11 +1,16 @@
 @use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
 .list {
   flex: 6;
+  min-width: 0;
   padding: 20px;
+  container-type: inline-size;
+  container-name: list-entry;
 
   .list-header {
-    width: 95%;
+    width: 100%;
+    max-width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -23,6 +28,11 @@
       background-color: $clr-btn-dark;
       cursor: pointer;
 
+      @include mobile {
+        padding: 10px;
+        max-width: 125px;
+      }
+
       &:hover {
         transform: scale(1.1);
         background-color: $clr-btn-hover;
@@ -31,13 +41,14 @@
   }
 
   .list-body {
-    width: 95%;
+    width: 100%;
+    max-width: 100%;
     height: max-content;
     margin-bottom: 20px;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr;
 
     .section-left {
-      flex: 1;
       height: 100%;
       padding: 30px;
       box-shadow: 0px 0px 11px 3px $clr-boxshadow;
@@ -92,7 +103,6 @@
     }
 
     // .section-right {
-    //   flex: 2;
     //   height: 100%;
     //   margin: 0 20px;
     //   padding: 30px;
@@ -100,7 +110,8 @@
   }
 
   .list-footer {
-    width: 95%;
+    width: 100%;
+    max-width: 100%;
     padding: 30px;
     box-shadow: 0px 0px 11px 3px $clr-boxshadow;
 
@@ -112,11 +123,11 @@
 
     .edit-form {
       width: calc(100% - 30px);
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 10px;
 
       .left {
-        flex: 2;
         padding-top: 15px;
         display: flex;
         flex-direction: column;
@@ -191,13 +202,13 @@
       }
 
       .right {
-        flex: 3;
         padding-top: 15px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
 
         .content-section {
+          width: 450px;
           display: flex;
           flex-direction: column;
           padding-right: 20px;
@@ -209,6 +220,7 @@
 
 
           .searchbar {
+            margin-left: 20px;
             margin-bottom: 0px;
             padding: 10px;
             border: none;
@@ -223,6 +235,7 @@
 
           .filter-toggle {
             width: 130px;
+            margin-left: 20px;
             padding: 5px;
             border: none;
             border-bottom: 2px solid var(--clr-font-sec);
@@ -237,11 +250,14 @@
           }
 
           .content-list {
-            padding: 5px;
             height: 250px;
+            padding: 5px;
+            margin-left: 20px;
             border: none;
             border-bottom: 2px solid var(--clr-font-sec);
             font-size: 14px;
+            overflow-x: auto;
+            overflow-y: auto;
             cursor: pointer;
 
             &:focus {
@@ -277,6 +293,21 @@
           }
         }
       }
+    }
+  }
+
+  @container list-entry (max-width: 850px) {
+    .list-body,
+    .list-footer .edit-form {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @container list-entry (max-width: 475px) {
+    .list-body,
+    .list-footer {
+      overflow-x: auto;
+      overflow-y: hidden;
     }
   }
 }
