@@ -29,9 +29,9 @@ services:
     depends_on:
       - backend
 
-  frontend:
-    container_name: gen-frontend
-    build: ./frontend
+  client:
+    container_name: gen-client
+    build: ./client
     ports:
       - "5173:5173"
     environment:
